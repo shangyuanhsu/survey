@@ -7,7 +7,7 @@ use App\Services\Contracts\DashboardServiceInterface;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class DashboardServiceProvider extends ServiceProvider 
+class DashboardServiceProvider extends ServiceProvider implements DeferrableProvider
 {
 
  

@@ -9,7 +9,7 @@ use App\Repositories\Contracts\SurveyRepositoryInterface;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class SurveyServiceProvider extends ServiceProvider 
+class SurveyServiceProvider extends ServiceProvider  implements DeferrableProvider
 {
     /**
      * Register services.
