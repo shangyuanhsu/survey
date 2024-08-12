@@ -3,6 +3,8 @@
 namespace App\Repositories\Contracts;
 
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\Request;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface SurveyRepositoryInterface
 {
@@ -46,4 +48,12 @@ interface SurveyRepositoryInterface
      * @return Collection
      */
     public function getLatestAnswers(int $userId, int $limit = 5): Collection;
+
+    /**
+     * getSurveysByUserId
+     *
+     * @param  int $userId
+     * @return LengthAwarePaginator
+     */
+    public function getSurveysByUserId(int $userId): LengthAwarePaginator;
 }

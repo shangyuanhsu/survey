@@ -2,9 +2,7 @@
 
 namespace App\Providers;
 
-use App\Repositories\SurveyRepository;
 use App\Services\DashboardService;
-use App\Repositories\Contracts\SurveyRepositoryInterface;
 use App\Services\Contracts\DashboardServiceInterface;
 use Illuminate\Support\ServiceProvider;
 
@@ -16,7 +14,6 @@ class DashboardServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->app->bind(DashboardServiceInterface::class, DashboardService::class);
-        $this->app->bind(SurveyRepositoryInterface::class, SurveyRepository::class);
     }
 
     /**

@@ -7,6 +7,8 @@ use App\Models\SurveyAnswer;
 use App\Repositories\Contracts\SurveyRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class SurveyRepository implements SurveyRepositoryInterface
 {
@@ -41,5 +43,12 @@ class SurveyRepository implements SurveyRepositoryInterface
             ->orderBy('end_date', 'DESC')
             ->limit($limit)
             ->get(['survey_answers.*']);
+    }
+
+    public function getSurveysByUserId(int $userId): LengthAwarePaginator
+    {
+        return  Survey::where('user_id', $userId)
+            ->orderBy('created_at', 'desc')
+            ->paginate(3);
     }
 }
