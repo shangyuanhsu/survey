@@ -4,11 +4,12 @@ namespace App\Repositories;
 
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
+use App\Models\SurveyQuestion;
 use App\Repositories\Contracts\SurveyRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
-
+use Illuminate\Validation\ValidationException;
 
 class SurveyRepository implements SurveyRepositoryInterface
 {
@@ -19,7 +20,7 @@ class SurveyRepository implements SurveyRepositoryInterface
             ->count();
     }
 
-    public function getLatestSurvey(int $userId): Model
+    public function getLatestSurvey(int $userId): ?Survey
     {
         return Survey::query()
             ->where('user_id', $userId)
@@ -45,10 +46,20 @@ class SurveyRepository implements SurveyRepositoryInterface
             ->get(['survey_answers.*']);
     }
 
-    public function getSurveysByUserId(int $userId): LengthAwarePaginator
+    public function findByUserId(int $userId): LengthAwarePaginator
     {
-        return  Survey::where('user_id', $userId)
+        return Survey::where('user_id', $userId)
             ->orderBy('created_at', 'desc')
             ->paginate(3);
+    }
+
+    public function createSurvey(array $surveyAttributes): Survey
+    {
+        return Survey::create($surveyAttributes);
+    }
+
+    public function createSurveyQuestion($validator): SurveyQuestion
+    {
+        return SurveyQuestion::create($validator);
     }
 }

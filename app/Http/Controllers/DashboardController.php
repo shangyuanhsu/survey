@@ -9,15 +9,10 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    protected $dashboardService;
-
-    public function __construct(DashboardServiceInterface $dashboardService)
-    {
-        $this->dashboardService = $dashboardService;
-    }
+    public function __construct(private DashboardServiceInterface $dashboardService){}
 
     public function index(Request $request)
-    {
+    {   
         $user = $request->user();
 
         $dashboardData = $this->dashboardService->getDashboardData($user);

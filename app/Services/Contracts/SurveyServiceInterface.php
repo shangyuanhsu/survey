@@ -5,7 +5,7 @@ namespace App\Services\Contracts;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
-use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 interface  SurveyServiceInterface
 {
@@ -14,20 +14,20 @@ interface  SurveyServiceInterface
      *
      * Display a listing of the resource.
      * 
-     * @param  Request $request
-     * @return AnonymousResourceCollection
+     * @param  int $userId
+     * @return LengthAwarePaginator
      */
-    public function index(Request $request): AnonymousResourceCollection;
+    public function getByUserId(int $userId): LengthAwarePaginator;
 
-    // /**
-    //  * store
-    //  * 
-    //  * Store a newly created resource in storage.
-    //  *
-    //  * @param  Request $request
-    //  * @return Response
-    //  */
-    // public function store(Request $request): Response;
+    /**
+     * store
+     * 
+     * Store a newly created resource in storage.
+     *
+     * @param  array $surveyAttributes
+     * @return Model
+     */
+    public function handleSurvey(array $surveyAttributes): Model;
 
     // /**
     //  * show
@@ -46,11 +46,11 @@ interface  SurveyServiceInterface
     //  * 
     //  * Update the specified resource in storage.
     //  *
-    //  * @param  Request $request
-    //  * @param  Model $survey
+    //  * @param  Survey $survey
+    //  * @param  array $surveyAttributes
     //  * @return Response
     //  */
-    // public function update(Request $request, Model $survey): Response;
+    // public function update( Survey $survey, array $surveyAttributes);
 
     // /**
     //  * destroy

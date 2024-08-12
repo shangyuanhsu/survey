@@ -6,25 +6,29 @@ use App\Services\SurveyService;
 use App\Services\Contracts\SurveyServiceInterface;
 use App\Repositories\SurveyRepository;
 use App\Repositories\Contracts\SurveyRepositoryInterface;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class SurveyServiceProvider extends ServiceProvider
+class SurveyServiceProvider extends ServiceProvider 
 {
     /**
      * Register services.
      */
-    public function register(): void
+    private $contracts;
+    public function register()
     {
-        $this->app->bind(SurveyServiceInterface::class, SurveyService::class);
-        $this->app->bind(SurveyRepositoryInterface::class, SurveyRepository::class);
-
+        $this->app->singleton(SurveyServiceInterface::class, SurveyService::class);
+        $this->app->singleton(SurveyRepositoryInterface::class, SurveyRepository::class);
     }
 
     /**
      * Bootstrap services.
      */
-    public function boot(): void
+    public function provides()
     {
-        //
+        return [
+            SurveyServiceInterface::class,
+            SurveyRepositoryInterface::class
+        ];
     }
 }

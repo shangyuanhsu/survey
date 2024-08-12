@@ -2,9 +2,12 @@
 
 namespace App\Repositories\Contracts;
 
+use App\Models\Survey;
+use App\Models\SurveyAnswer;
+use App\Models\SurveyQuestion;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Validation\ValidationException;
 
 interface SurveyRepositoryInterface
 {
@@ -24,9 +27,9 @@ interface SurveyRepositoryInterface
      * Latest Survey
      *
      * @param  int $userId
-     * @return void
+     * @return Survey
      */
-    public function getLatestSurvey(int $userId);
+    public function getLatestSurvey(int $userId): ?Survey;
 
     /**
      * getTotalAnswers
@@ -45,15 +48,31 @@ interface SurveyRepositoryInterface
      *
      * @param  int $userId
      * @param  int $limit
-     * @return Collection
+     * @return Collection<SurveyAnswer>
      */
     public function getLatestAnswers(int $userId, int $limit = 5): Collection;
 
     /**
-     * getSurveysByUserId
+     * findByUserId
      *
      * @param  int $userId
      * @return LengthAwarePaginator
      */
-    public function getSurveysByUserId(int $userId): LengthAwarePaginator;
+    public function findByUserId(int $userId): LengthAwarePaginator;
+
+    /**
+     * createSurvey
+     *
+     * @param  array $userId
+     * @return Survey
+     */
+    public function createSurvey(array $surveyAttributes): Survey;
+
+    /**
+     * createSurveyQuestion
+     *
+     * @param  array $validator
+     * @return SurveyQuestion
+     */
+    public function createSurveyQuestion($validator): SurveyQuestion;
 }

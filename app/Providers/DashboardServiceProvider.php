@@ -4,23 +4,27 @@ namespace App\Providers;
 
 use App\Services\DashboardService;
 use App\Services\Contracts\DashboardServiceInterface;
+use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 
-class DashboardServiceProvider extends ServiceProvider
+class DashboardServiceProvider extends ServiceProvider 
 {
+
+ 
     /**
      * Register services.
      */
-    public function register(): void
+    private $contracts;
+    public function register()
     {
-        $this->app->bind(DashboardServiceInterface::class, DashboardService::class);
+        $this->app->singleton(DashboardServiceInterface::class, DashboardService::class);
     }
 
     /**
      * Bootstrap services.
      */
-    public function boot(): void
+    public function provides()
     {
-        //
+        return [DashboardServiceInterface::class];
     }
 }

@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class DashboardService implements DashboardServiceInterface
 {
-    protected $surveyRepository;
-    public function __construct(SurveyRepositoryInterface $surveyRepository) {}
+    public function __construct(private SurveyRepositoryInterface $surveyRepository) {}
 
     public function getDashboardData(Model $user): array
     {
