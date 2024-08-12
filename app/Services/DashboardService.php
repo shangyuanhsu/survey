@@ -2,24 +2,27 @@
 
 namespace App\Services;
 
+use App\Repositories\Contracts\SurveyRepositoryInterface;
 use App\Services\Contracts\DashboardServiceInterface;
+use Illuminate\Database\Eloquent\Model;
 
 class DashboardService implements DashboardServiceInterface
 {
-    /**
-     * Create a new class instance.
-     */
-    public function __construct()
-    {
-        //
-    }
+    protected $surveyRepository;
+    public function __construct(SurveyRepositoryInterface $surveyRepository) {}
 
-    public function getData()
+    public function getDashboardData(Model $user): array
     {
-        
+        $total = $this->surveyRepository->getTotalSurveys($user->id);
+        $latest = $this->surveyRepository->getLatestSurvey($user->id);
+        $totalAnswers = $this->surveyRepository->getTotalAnswers($user->id);
+        $latestAnswers = $this->surveyRepository->getLatestAnswers($user->id);
+
         return [
-            'users' => 100,
-            'sales' => 200,
+            'total' => $total,
+            'latest' => $latest,
+            'totalAnswers' => $totalAnswers,
+            'latestAnswers' => $latestAnswers,
         ];
     }
 }

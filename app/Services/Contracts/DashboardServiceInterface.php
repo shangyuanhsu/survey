@@ -2,13 +2,17 @@
 
 namespace App\Services\Contracts;
 
-class DashboardServiceInterface
-{
+use Illuminate\Database\Eloquent\Model;
+
+interface  DashboardServiceInterface
+{    
     /**
-     * Create a new class instance.
+     * getDashboardData
+     * 
+     * Retrieve the user's survey data
+     *
+     * @param  Model $user 
+     * @return array
      */
-    public function __construct()
-    {
-        //
-    }
+    public function getDashboardData(Model $user): array;
 }
