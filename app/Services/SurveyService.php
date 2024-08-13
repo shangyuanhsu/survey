@@ -28,7 +28,8 @@ class SurveyService implements SurveyServiceInterface
     {
         // Check if image was given and save on local file system
         if (isset($surveyAttributes['image'])) {
-            $surveyAttributes['image'] = $this->saveImage($surveyAttributes['image']);
+            $path = $this->saveImage($surveyAttributes['image']);
+            $surveyAttributes['image'] = 'storage/' . $path;
         }
 
         $survey = $this->surveyRepository->createSurvey($surveyAttributes);
@@ -46,7 +47,7 @@ class SurveyService implements SurveyServiceInterface
     {
         if (isset($surveyAttributes['image'])) {
             $relativePath = $this->saveImage($surveyAttributes['image']);
-            $surveyAttributes['image'] = $relativePath;
+            $surveyAttributes['image'] = 'storage/' . $relativePath;
 
             if ($survey->image) {
                 Storage::disk('public')->delete($survey->image);

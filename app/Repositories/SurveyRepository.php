@@ -62,7 +62,7 @@ class SurveyRepository implements SurveyRepositoryInterface
         return SurveyQuestion::create($validator);
     }
 
-    public function updateSurvey(int $id, array $surveyAttributes): Survey
+    public function updateSurvey(int $id, array $surveyAttributes): bool
     {
         return Survey::find($id)
             ->update($surveyAttributes);

@@ -81,9 +81,9 @@ interface SurveyRepositoryInterface
      *
      * @param  int $id
      * @param  array $surveyAttributes
-     * @return Survey
+     * @return bool
      */
-    public function updateSurvey(int $id, array $surveyAttributes): Survey;
+    public function updateSurvey(int $id, array $surveyAttributes): bool;
 
     /**
      * destroySurveyQuestion
