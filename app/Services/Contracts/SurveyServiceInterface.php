@@ -2,9 +2,7 @@
 
 namespace App\Services\Contracts;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Models\Survey;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 interface  SurveyServiceInterface
@@ -25,62 +23,39 @@ interface  SurveyServiceInterface
      * Store a newly created resource in storage.
      *
      * @param  array $surveyAttributes
-     * @return Model
+     * @return Survey
      */
-    public function handleSurvey(array $surveyAttributes): Model;
+    public function handleSurvey(array $surveyAttributes): Survey;
 
-    // /**
-    //  * show
-    //  * 
-    //  * Display the specified resource.
-    //  *
-    //  * @param  Model $survey
-    //  * @param  Request $request
-    //  * @return Response
-    //  */
-    // public function show(Model $survey, Request $request): Response;
+    /**
+     * update
+     * 
+     * Update the specified resource in storage.
+     *
+     * @param  Survey $survey
+     * @param  array $surveyAttributes
+     * @return Survey
+     */
+    public function updateSurvey(Survey $survey, array $surveyAttributes): Survey;
 
+    /**
+     * destroy
+     * 
+     * Remove the specified resource from storage.
+     *
+     * @param  Survey $survey
+     * @return bool
+     */
+    public function destroySurvey(Survey $survey): bool;
 
-    // /**
-    //  * update
-    //  * 
-    //  * Update the specified resource in storage.
-    //  *
-    //  * @param  Survey $survey
-    //  * @param  array $surveyAttributes
-    //  * @return Response
-    //  */
-    // public function update( Survey $survey, array $surveyAttributes);
-
-    // /**
-    //  * destroy
-    //  * 
-    //  * Remove the specified resource from storage.
-    //  *
-    //  * @param  Model $survey
-    //  * @param  Request $request
-    //  * @return Response
-    //  */
-    // public function destroy(Model $survey, Request $request): Response;
-
-    // /**
-    //  * getBySlug
-    //  * 
-    //  * 
-    //  *
-    //  * @param  Model $survey
-    //  * @return Response
-    //  */
-    // public function getBySlug(Model $survey): Response;
-
-    // /**
-    //  * storeAnswer
-    //  * 
-    //  * Save Survey Answers.
-    //  *
-    //  * @param  Request $request
-    //  * @param  Model $survey
-    //  * @return response
-    //  */
-    // public function storeAnswer(Request $request, Model $survey): response;
+    /**
+     * storeAnswer
+     * 
+     * Save Survey Answers.
+     *
+     * @param  Survey $survey
+     * @param  array $data
+     * @return array
+     */
+    public function storeAnswer(Survey $survey, array $data): array;
 }

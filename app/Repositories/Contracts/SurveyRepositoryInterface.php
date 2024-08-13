@@ -5,9 +5,9 @@ namespace App\Repositories\Contracts;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
 use App\Models\SurveyQuestion;
+use App\Models\SurveyQuestionAnswer;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Validation\ValidationException;
 
 interface SurveyRepositoryInterface
 {
@@ -74,5 +74,38 @@ interface SurveyRepositoryInterface
      * @param  array $validator
      * @return SurveyQuestion
      */
-    public function createSurveyQuestion($validator): SurveyQuestion;
+    public function createSurveyQuestion(array $validator): SurveyQuestion;
+
+    /**
+     * updateSurvey
+     *
+     * @param  int $id
+     * @param  array $surveyAttributes
+     * @return Survey
+     */
+    public function updateSurvey(int $id, array $surveyAttributes): Survey;
+
+    /**
+     * destroySurveyQuestion
+     *
+     * @param  array $ids
+     * @return bool
+     */
+    public function destroySurveyQuestion(array $ids): bool;
+
+    /**
+     * createSurveyAnswer
+     *
+     * @param  array $surveyAnswerAttributes
+     * @return SurveyAnswer
+     */
+    public function createSurveyAnswer(array $surveyAnswerAttributes): SurveyAnswer;
+
+    /**
+     * createSurveyQuestionAnswer
+     *
+     * @param  array $surveyQuestionAnswerAttributes
+     * @return SurveyQuestionAnswer
+     */
+    public function createSurveyQuestionAnswer(array $surveyQuestionAnswerAttributes): SurveyQuestionAnswer;
 }

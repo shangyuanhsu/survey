@@ -5,11 +5,10 @@ namespace App\Repositories;
 use App\Models\Survey;
 use App\Models\SurveyAnswer;
 use App\Models\SurveyQuestion;
+use App\Models\SurveyQuestionAnswer;
 use App\Repositories\Contracts\SurveyRepositoryInterface;
 use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Validation\ValidationException;
 
 class SurveyRepository implements SurveyRepositoryInterface
 {
@@ -58,8 +57,29 @@ class SurveyRepository implements SurveyRepositoryInterface
         return Survey::create($surveyAttributes);
     }
 
-    public function createSurveyQuestion($validator): SurveyQuestion
+    public function createSurveyQuestion(array $validator): SurveyQuestion
     {
         return SurveyQuestion::create($validator);
+    }
+
+    public function updateSurvey(int $id, array $surveyAttributes): Survey
+    {
+        return Survey::find($id)
+            ->update($surveyAttributes);
+    }
+
+    public function destroySurveyQuestion(array $ids): bool
+    {
+        return SurveyQuestion::destroy($ids);
+    }
+
+    public function createSurveyAnswer(array $surveyAnswerAttributes): SurveyAnswer
+    {
+        return SurveyAnswer::create($surveyAnswerAttributes);
+    }
+
+    public function createSurveyQuestionAnswer(array $surveyQuestionAnswerAttributes): SurveyQuestionAnswer
+    {
+        return SurveyQuestionAnswer::create($surveyQuestionAnswerAttributes);
     }
 }

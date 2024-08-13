@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Survey;
 use App\Http\Resources\SurveyResource;
+use App\Http\Requests\StoreSurveyAnswerRequest;
 use App\Http\Requests\StoreSurveyRequest;
 use App\Http\Requests\UpdateSurveyRequest;
 use App\Services\Contracts\SurveyServiceInterface;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class SurveyController extends Controller
@@ -42,7 +44,54 @@ class SurveyController extends Controller
         return new SurveyResource($survey);
     }
 
-    public function update(UpdateSurveyRequest $request, Survey $survey) {
+    public function update(Survey $survey, UpdateSurveyRequest $request)
+    {
+        $data = $request->validated();
 
+        $survey = $this->SurveyService->updateSurvey($survey, $data);
+
+        return  new SurveyResource($survey);
+    }
+
+    public function destroy(Survey $survey, Request $request)
+    {
+        $user = $request->user();
+
+        if ($user->id !== $survey->user_id) {
+            return abort(403, 'Unauthorized action.');
+        }
+
+        $survey = $this->SurveyService->destroySurvey($survey);
+
+        return response('', 204);
+    }
+
+    public function getBySlug(Survey $survey)
+    {
+        if (!$survey->status) {
+            return response("", 404);
+        }
+
+        $currentDate = Carbon::now();
+        $expireDate = Carbon::parse($survey->expire_date);
+
+        if ($currentDate > $expireDate) {
+            return response("", 404);
+        }
+
+        return new SurveyResource($survey);
+    }
+
+    public function storeAnswer(Survey $survey, StoreSurveyAnswerRequest $request)
+    {
+        $validated = $request->validated();
+
+        $survey = $this->SurveyService->storeAnswer($survey, $validated);
+
+        if (!$survey['isSuccess']) {
+            return response($survey['msg'], 400);
+        }
+
+        return response("", 201);
     }
 }
