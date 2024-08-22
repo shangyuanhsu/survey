@@ -16,7 +16,13 @@ This project is a web-based survey application built with Laravel 11 + Vue.js + 
 
 To build and run this project, follow the steps below:
 
-1. **Set up your environment variables:**
+1. **Install all the libraries or packages:**
+
+    ```bash
+    composer install
+    ```
+
+2. **Set up your environment variables:**
 
     - Copy the `.env.example` file to `.env`:
 
@@ -35,7 +41,7 @@ To build and run this project, follow the steps below:
       DB_PASSWORD=your_database_password
       ```
 
-2. **Run database migrations:**
+3. **Run database migrations:**
 
     - Migrate the database to set up the necessary tables:
 
@@ -43,7 +49,7 @@ To build and run this project, follow the steps below:
       php artisan migrate
       ```
 
-3. **Serve the application:**
+4. **Serve the application:**
 
     - Start the Laravel development server:
 
@@ -51,7 +57,7 @@ To build and run this project, follow the steps below:
       php artisan serve
       ```
 
-4. **Create a symbolic link for storage:**
+5. **Create a symbolic link for storage:**
 
     - This command will create a symbolic link from `public/storage` to `storage/app/public`, making your files accessible from the web:
 
