@@ -13,13 +13,13 @@ use Illuminate\Http\Request;
 
 class SurveyController extends Controller
 {
-    public function __construct(private SurveyServiceInterface $SurveyService) {}
+    public function __construct(private SurveyServiceInterface $surveyService) {}
 
     public function index(Request $request)
     {
         $user = $request->user();
 
-        $surveysByUserIdData = $this->SurveyService->getByUserId($user->id);
+        $surveysByUserIdData = $this->surveyService->getByUserId($user->id);
 
         return SurveyResource::collection($surveysByUserIdData);
     }
@@ -28,7 +28,7 @@ class SurveyController extends Controller
     {
         $data = $request->validated();
 
-        $survey = $this->SurveyService->handleSurvey($data);
+        $survey = $this->surveyService->handleSurvey($data);
 
         return new SurveyResource($survey);
     }
@@ -48,7 +48,7 @@ class SurveyController extends Controller
     {
         $data = $request->validated();
 
-        $survey = $this->SurveyService->updateSurvey($survey, $data);
+        $survey = $this->surveyService->updateSurvey($survey, $data);
 
         return  new SurveyResource($survey);
     }
@@ -61,7 +61,7 @@ class SurveyController extends Controller
             return abort(403, 'Unauthorized action.');
         }
 
-        $survey = $this->SurveyService->destroySurvey($survey);
+        $survey = $this->surveyService->destroySurvey($survey);
 
         return response('', 204);
     }
@@ -86,7 +86,7 @@ class SurveyController extends Controller
     {
         $validated = $request->validated();
 
-        $survey = $this->SurveyService->storeAnswer($survey, $validated);
+        $survey = $this->surveyService->storeAnswer($survey, $validated);
 
         if (!$survey['isSuccess']) {
             return response($survey['msg'], 400);
