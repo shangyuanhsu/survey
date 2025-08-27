@@ -1,13 +1,14 @@
 # Survey Application
 
-Laravel 11 + Vue.js + Tailwind
 
-This project is a web-based survey application built with Laravel 11 + Vue.js + Tailwind. It allows you to create, manage, and distribute surveys for people to answer. Additionally, this project integrates with Jira to streamline issue tracking and project management.
+Laravel 11 + Nuxt.js + Tailwind
+
+This project is a web-based survey application built with Laravel 11 + Nuxt.js + Tailwind. It allows you to create, manage, and distribute surveys for people to answer. Additionally, this project integrates with Jira to streamline issue tracking and project management.
 
 
 ## to do >___<
 
-* front end : Vue.js + Tailwind
+* front end : Nuxt.js + Tailwind
 
 * laravel testing
 
