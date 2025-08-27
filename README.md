@@ -1,29 +1,34 @@
-# Survey Application
+
+# 📝 Survey Application
 
 
-Laravel 11 + Nuxt.js + Tailwind
 
-This project is a web-based survey application built with Laravel 11 + Nuxt.js + Tailwind. It allows you to create, manage, and distribute surveys for people to answer. Additionally, this project integrates with Jira to streamline issue tracking and project management.
+🚀 Laravel 11 + Nuxt.js + Tailwind 🎨
 
-
-## to do >___<
-
-* front end : Nuxt.js + Tailwind
-
-* laravel testing
+This project is a web-based survey application built with Laravel 11 + Nuxt.js + Tailwind. It allows you to create, manage, and distribute surveys for people to answer. Additionally, this project integrates with Jira to streamline issue tracking and project management. 📊🗂️
 
 
-## Laravel Getting Started
+
+## 🛠️ To Do >___<
+
+* 💻 front end : Nuxt.js + Tailwind 
+
+* 🧪 laravel testing
+
+
+
+## ⚡ Laravel Getting Started
+
 
 To build and run this project, follow the steps below:
 
-1. **Install all the libraries or packages:**
+1. 📦 **Install all the libraries or packages:**
 
     ```bash
     composer install
     ```
 
-2. **Set up your environment variables:**
+2. ⚙️ **Set up your environment variables:**
 
     - Copy the `.env.example` file to `.env`:
 
@@ -42,7 +47,7 @@ To build and run this project, follow the steps below:
       DB_PASSWORD=your_database_password
       ```
 
-3. **Run database migrations:**
+3. 🗄️ **Run database migrations:**
 
     - Migrate the database to set up the necessary tables:
 
@@ -50,7 +55,7 @@ To build and run this project, follow the steps below:
       php artisan migrate
       ```
 
-4. **Serve the application:**
+4. ▶️ **Serve the application:**
 
     - Start the Laravel development server:
 
@@ -58,7 +63,7 @@ To build and run this project, follow the steps below:
       php artisan serve
       ```
 
-5. **Create a symbolic link for storage:**
+5. 🔗 **Create a symbolic link for storage:**
 
     - This command will create a symbolic link from `public/storage` to `storage/app/public`, making your files accessible from the web:
 
