@@ -9,7 +9,7 @@ This project is a web-based survey application built with Laravel 11 + Nuxt.js +
 
 
 
-## 🛠️ To Do >___<
+## 🛠️ To Do 
 
 * 💻 front end : Nuxt.js + Tailwind 
 
